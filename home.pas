@@ -5,12 +5,14 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage, farmacia_basica,
-  Vcl.StdCtrls, form_hospital;
+  Vcl.StdCtrls, form_hospital, Vcl.Imaging.jpeg;
 
 type
   Tfhome = class(TForm)
     Image2: TImage;
     Image1: TImage;
+    Panel1: TPanel;
+    Panel2: TPanel;
     procedure Image1Click(Sender: TObject);
     procedure Image2Click(Sender: TObject);
   private
