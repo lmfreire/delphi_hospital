@@ -1,0 +1,20 @@
+program Hospital;
+
+uses
+  Vcl.Forms,
+  home in 'C:\Users\Matheus\Documents\Embarcadero\Studio\Projects\home.pas' {fhome},
+  farmacia_basica in 'C:\Users\Matheus\Documents\Embarcadero\Studio\Projects\farmacia_basica.pas' {fbasica},
+  data_remedios in 'C:\Users\Matheus\Documents\Embarcadero\Studio\Projects\data_remedios.pas' {dtremedios: TDataModule},
+  hospital in 'hospital.pas' {fhospital};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfhome, fhome);
+  Application.CreateForm(Tfbasica, fbasica);
+  Application.CreateForm(Tdtremedios, dtremedios);
+  Application.CreateForm(Tfhospital, fhospital);
+  Application.Run;
+end.

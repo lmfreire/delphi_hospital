@@ -1,0 +1,48 @@
+unit form_hospital;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, form_medico, Data.DB,
+  Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.ExtCtrls;
+
+type
+  Tfhospital = class(TForm)
+    MainMenu1: TMainMenu;
+    C1: TMenuItem;
+    Cadastrar1: TMenuItem;
+    Medico1: TMenuItem;
+    Cadastro1: TMenuItem;
+    Fechar1: TMenuItem;
+    DBGrid1: TDBGrid;
+    Panel1: TPanel;
+    DBNavigator1: TDBNavigator;
+    procedure Fechar1Click(Sender: TObject);
+    procedure Cadastro1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fhospital: Tfhospital;
+
+implementation
+
+{$R *.dfm}
+
+uses data_remedios;
+
+procedure Tfhospital.Cadastro1Click(Sender: TObject);
+begin
+  form_medico.fmedico.Show;
+end;
+
+procedure Tfhospital.Fechar1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

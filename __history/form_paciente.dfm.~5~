@@ -1,0 +1,75 @@
+object fpaciente: Tfpaciente
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro de Paciente'
+  ClientHeight = 442
+  ClientWidth = 628
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Menu = MainMenu1
+  Position = poMainFormCenter
+  WindowState = wsMaximized
+  TextHeight = 15
+  object lNome: TLabel
+    Left = 56
+    Top = 59
+    Width = 33
+    Height = 15
+    Caption = 'Nome'
+  end
+  object lIdade: TLabel
+    Left = 56
+    Top = 123
+    Width = 29
+    Height = 15
+    Caption = 'Idade'
+  end
+  object lSexo: TLabel
+    Left = 57
+    Top = 195
+    Width = 25
+    Height = 15
+    Caption = 'Sexo'
+    Enabled = False
+  end
+  object edNome: TEdit
+    Left = 56
+    Top = 80
+    Width = 145
+    Height = 23
+    ImeName = 'Portuguese (Brazilian ABNT)'
+    TabOrder = 0
+  end
+  object edIdade: TMaskEdit
+    Left = 57
+    Top = 144
+    Width = 144
+    Height = 23
+    EditMask = '!99;1;_'
+    MaxLength = 2
+    TabOrder = 1
+    Text = '  '
+  end
+  object ComboBox1: TComboBox
+    Left = 56
+    Top = 216
+    Width = 145
+    Height = 23
+    TabOrder = 2
+    Items.Strings = (
+      'M-Masculino'
+      'F-Feminino')
+  end
+  object MainMenu1: TMainMenu
+    Left = 568
+    Top = 296
+    object Fechar1: TMenuItem
+      Caption = 'Fechar'
+      OnClick = Fechar1Click
+    end
+  end
+end
