@@ -82,7 +82,7 @@ object fhospital: Tfhospital
       Width = 310
       Height = 369
       Align = alClient
-      DataSource = dtremedios.dspacientes
+      DataSource = dtremedios.dsPaciente
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -95,7 +95,7 @@ object fhospital: Tfhospital
       Top = 16
       Width = 310
       Height = 56
-      DataSource = dtremedios.dspacientes
+      DataSource = dtremedios.dsPaciente
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
       Align = alTop
       TabOrder = 1
