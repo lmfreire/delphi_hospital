@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.ExtCtrls, data_remedios, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  FireDAC.Comp.Client, Vcl.Mask;
+  FireDAC.Comp.Client, Vcl.Mask, Vcl.DBCtrls;
 
 type
   TformConsulta = class(TForm)
@@ -25,8 +25,13 @@ type
     edRemedio: TEdit;
     lRemedio: TLabel;
     Panel2: TPanel;
+    Panel3: TPanel;
+    DBGrid1: TDBGrid;
+    DBNavigator1: TDBNavigator;
+    comboRemedios: TComboBox;
     procedure Fechar1Click(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
   private
     { Private declarations }
@@ -100,11 +105,57 @@ begin
 
   end;
 
+  qryReceitas.Append;
+
+  try
+    qryReceitas.FieldByName('id_paciente').AsInteger := StrToInt(idPaciente);
+    qryReceitas.FieldByName('id_medico').AsInteger := StrToInt(idMedico);
+    qryReceitas.FieldByName('id_remedio').AsInteger := StrToInt(idRemedio);
+    qryReceitas.FieldByName('data').AsString := edData.Text;
+    qryReceitas.FieldByName('diagnostico').AsString := edDiagnostico.Text;
+
+    qryReceitas.Post;
+
+    ShowMessage('Receita cadastrada com sucesso');
+
+  except on E: Exception do
+    begin
+      qryReceitas.Cancel;
+      ShowMessage('Erro: ' + E.Message );
+    end;
+
+  end;
+
 end;
 
 procedure TformConsulta.Fechar1Click(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TformConsulta.FormShow(Sender: TObject);
+var
+  qryConsulta : TFDQuery;
+  texto : string;
+begin
+
+  qryConsulta := data_remedios.dtremedios.queryremedios;
+
+  qryConsulta.SQL.Text := 'select * from remedios';
+  qryConsulta.Open;
+
+  while not qryConsulta.Eof do
+  begin
+
+    texto := qryConsulta.FieldByName('id').asString + '-' + qryConsulta.FieldByName('nome').asString;
+
+    comboRemedios.Items.Add(texto);
+
+    qryConsulta.Next;
+  end;
+
+
+
 end;
 
 end.

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.ExtCtrls, data_remedios, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  FireDAC.Comp.Client, Vcl.Mask, Vcl.DBCtrls;
+  FireDAC.Comp.Client, Vcl.Mask, Vcl.DBCtrls, System.StrUtils;
 
 type
   TformConsulta = class(TForm)
@@ -22,14 +22,15 @@ type
     edDate: TLabel;
     edDiagnostico: TEdit;
     lDiagnostico: TLabel;
-    edRemedio: TEdit;
     lRemedio: TLabel;
     Panel2: TPanel;
     Panel3: TPanel;
     DBGrid1: TDBGrid;
     DBNavigator1: TDBNavigator;
+    comboRemedios: TComboBox;
     procedure Fechar1Click(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
   private
     { Private declarations }
@@ -50,7 +51,7 @@ var
   qryReceitas : TFDQuery;
   idPaciente : string;
   idMedico : string;
-  idRemedio : string;
+  item : string;
 begin
 
   qryReceitas := data_remedios.dtremedios.queryReceitas;
@@ -83,32 +84,14 @@ begin
     Close;
   end;
 
-  with data_remedios.dtremedios.queryRemediosBuscar do
-  begin
-    Active := True;
-    sql.Add('select TOP 1 id from remedios where nome like' + QuotedStr('%' + edRemedio.Text + '%'));
-    if not Active then Open;
-    while not Eof do
-    begin
-      idRemedio := FieldByName('id').AsString;
-      Next;
-    end;
-    Close;
-
-    Active := True;
-    //sql.Text := 'update remedios set quantidade = quantidade - 1 where id = '+ idRemedio;
-    sql.Text := 'update remedios set quantidade = quantidade - 1 where nome like' + QuotedStr('%' + edRemedio.Text + '%');
-    ExecSQL;
-    Close;
-
-  end;
-
   qryReceitas.Append;
 
   try
     qryReceitas.FieldByName('id_paciente').AsInteger := StrToInt(idPaciente);
     qryReceitas.FieldByName('id_medico').AsInteger := StrToInt(idMedico);
-    qryReceitas.FieldByName('id_remedio').AsInteger := StrToInt(idRemedio);
+    item := comboRemedios.Items[comboRemedios.ItemIndex];
+    item := SplitString(item, '-')[0];
+    qryReceitas.FieldByName('id_remedio').AsInteger := StrToInt(item);
     qryReceitas.FieldByName('data').AsString := edData.Text;
     qryReceitas.FieldByName('diagnostico').AsString := edDiagnostico.Text;
 
@@ -129,6 +112,31 @@ end;
 procedure TformConsulta.Fechar1Click(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TformConsulta.FormShow(Sender: TObject);
+var
+  qryConsulta : TFDQuery;
+  texto : string;
+begin
+
+  qryConsulta := data_remedios.dtremedios.queryremedios;
+
+  qryConsulta.SQL.Text := 'select * from remedios';
+  qryConsulta.Open;
+
+  while not qryConsulta.Eof do
+  begin
+
+    texto := qryConsulta.FieldByName('id').asString + '-' + qryConsulta.FieldByName('nome').asString;
+
+    comboRemedios.Items.Add(texto);
+
+    qryConsulta.Next;
+  end;
+
+
+
 end;
 
 end.

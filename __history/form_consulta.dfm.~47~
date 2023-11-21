@@ -12,6 +12,7 @@ object formConsulta: TformConsulta
   Font.Style = []
   Menu = MainMenu1
   Position = poMainFormCenter
+  OnShow = FormShow
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
@@ -20,8 +21,8 @@ object formConsulta: TformConsulta
     Height = 534
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 622
-    ExplicitHeight = 408
+    ExplicitWidth = 1085
+    ExplicitHeight = 525
     object Panel2: TPanel
       Left = 1
       Top = 1
@@ -29,6 +30,7 @@ object formConsulta: TformConsulta
       Height = 532
       Align = alLeft
       TabOrder = 0
+      ExplicitHeight = 523
       object edDate: TLabel
         Left = 72
         Top = 147
@@ -109,11 +111,19 @@ object formConsulta: TformConsulta
       end
       object edRemedio: TEdit
         Left = 72
-        Top = 296
+        Top = 440
         Width = 217
         Height = 23
         ImeName = 'Portuguese (Brazilian ABNT)'
         TabOrder = 5
+      end
+      object comboRemedios: TComboBox
+        Left = 72
+        Top = 296
+        Width = 214
+        Height = 23
+        ImeName = 'Portuguese (Brazilian ABNT)'
+        TabOrder = 6
       end
     end
     object Panel3: TPanel
@@ -123,17 +133,15 @@ object formConsulta: TformConsulta
       Height = 532
       Align = alClient
       TabOrder = 1
-      ExplicitLeft = 656
-      ExplicitTop = 160
-      ExplicitWidth = 185
-      ExplicitHeight = 41
+      ExplicitWidth = 659
+      ExplicitHeight = 523
       object DBGrid1: TDBGrid
         Left = 1
         Top = 63
         Width = 663
         Height = 468
         Align = alClient
-        DataSource = dtremedios.DataSource1
+        DataSource = dtremedios.dsTableRemedios
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -146,9 +154,11 @@ object formConsulta: TformConsulta
         Top = 1
         Width = 663
         Height = 62
+        DataSource = dtremedios.dsTableRemedios
         VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
         Align = alTop
         TabOrder = 1
+        ExplicitWidth = 657
       end
     end
   end

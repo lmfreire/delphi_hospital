@@ -116,6 +116,44 @@ object formConsulta: TformConsulta
         TabOrder = 5
       end
     end
+    object Panel3: TPanel
+      Left = 425
+      Top = 1
+      Width = 665
+      Height = 532
+      Align = alClient
+      TabOrder = 1
+      ExplicitLeft = 656
+      ExplicitTop = 160
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+      object DBGrid1: TDBGrid
+        Left = 1
+        Top = 63
+        Width = 663
+        Height = 468
+        Align = alClient
+        DataSource = dtremedios.dsTableRemedios
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
+      end
+      object DBNavigator1: TDBNavigator
+        Left = 1
+        Top = 1
+        Width = 663
+        Height = 62
+        DataSource = dtremedios.dsTableRemedios
+        VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+        Align = alTop
+        TabOrder = 1
+        ExplicitLeft = 6
+        ExplicitTop = -5
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16

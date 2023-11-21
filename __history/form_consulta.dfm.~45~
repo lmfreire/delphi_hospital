@@ -109,10 +109,10 @@ object formConsulta: TformConsulta
         Height = 23
         TabOrder = 4
       end
-      object comboRemedios: TComboBox
+      object edRemedio: TEdit
         Left = 72
         Top = 296
-        Width = 214
+        Width = 217
         Height = 23
         ImeName = 'Portuguese (Brazilian ABNT)'
         TabOrder = 5
